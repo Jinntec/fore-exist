@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes" name="viewport"/>
+
+    <title>Submission storing to localStorage</title>
+
+    <link href="../resources/demo.css" rel="stylesheet">
+
+    <custom-style>
+        <style is="custom-style">
+            .dynamic {
+                background: #76ff03;
+            }
+
+            [unresolved] {
+                display: none;
+            }
+
+            fx-trigger {
+                display: block;
+            }
+
+            button{
+                font-size: 1.2rem;
+            }
+            h2{
+                color:inherit;
+            }
+
+            a,a:link,a:visited{
+                color: blue;
+            }
+        </style>
+    </custom-style>
+
+</head>
+<body unresolved="unresolved">
+<div class="wrapper">
+    <demo-snippet>
+        <template>
+            <fx-fore>
+
+                <fx-model>
+                    <fx-instance>
+                        <data>
+                            <key>foo</key>
+                            <bar>bar</bar>
+                            <another>value2</another>
+                        </data>
+                    </fx-instance>
+                    <fx-instance id="second" src="localStore:foo">
+                        <data></data>
+                    </fx-instance>
+
+                    <fx-submission id="sub1"
+                                   url="localStore:{key}"
+                                   method="post"
+                                   replace="instance"
+                                   instance="second">
+                        <fx-message event="submit-done">Data have been stored to localStorage with key '{key}'</fx-message>
+                    </fx-submission>
+                    <fx-submission id="sub2"
+                                   url="localStore:foo"
+                                   method="delete"
+                                   replace="instance"
+                                   instance="second">
+                    </fx-submission>
+                </fx-model>
+                <fx-group>
+
+                    <h1>Submission storing to localStorage of browser</h1>
+
+
+                    <h2>'localStore' scheme to read, write and delete localstorage items</h2>
+
+                    <p>The 'localStore' URI scheme can be used to access a certain key in localstorage of the
+                    browser.</p>
+
+                    <p>This can for instance be used to pass data between several browser tabs or store some user data.</p>
+
+                    <ul>
+                        <li>click 'submit' to store data in localstorage</li>
+                        <li>Open this <a href="submission-consumer.html" target="_blank">page</a> and click the button
+                            to load the data that have been passed via localstorage.</li>
+                    </ul>
+                    <fx-trigger>
+                        <button>submit</button>
+                        <fx-send submission="sub1"></fx-send>
+                    </fx-trigger>
+
+                    <p>After you've clicked 'submit' the data will survive page reloads or even closing the browser.</p>
+
+                    <fx-trigger>
+                        <button>clear local storage</button>
+                        <fx-send submission="sub2"></fx-send>
+                    </fx-trigger>
+
+                    <h3>Methods</h3>
+                    <ul>
+                        <li>get - read data with key</li>
+                        <li>consume - read  and delete data with key</li>
+                        <li>post - write data with key</li>
+                        <li>delete - delete data with key</li>
+                    </ul>
+
+
+                    <h2>Foo is {instance('second')/bar} and bar is {instance('second')/another}</h2>
+                </fx-group>
+                <fx-inspector></fx-inspector>
+            </fx-fore>
+        </template>
+    </demo-snippet>
+</div>
+<script type="module" src="./demo.js"></script>
+
+</body>
+</html>

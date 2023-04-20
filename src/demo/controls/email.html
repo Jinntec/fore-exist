@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes" name="viewport"/>
+
+    <title>Email Address</title>
+    <link href="../../resources/fore.css" rel="stylesheet">
+
+    <style>
+      body, .wrapper {
+          margin: 0;
+          padding: 0;
+      }
+
+      .wrapper {
+          width: 21cm;
+          height: 29.7cm;
+          background: lightyellow;
+          position: relative;
+      }
+    </style>
+  </head>
+  <body>
+	<div class="wrapper">
+
+      <fx-fore>
+          <!--
+          # as only the `fx-fore` element is taken when loaded into outer page a CSS stylesheet link
+          # can be put here to style the local content. However it must be noted that these styles
+          # are added to the page and therefore and interfere with settings made before. To avoid that
+          the matchers can be scoped quite simply with 'fx-fore.widget'.
+          -->
+<!--          <link href="../../resources/custom.css" rel="stylesheet">-->
+
+          <fx-message event="ready">email ready</fx-message>
+        <fx-model>
+<!--          <fx-message event="model-construct-done">email model ready</fx-message>-->
+
+          <fx-instance id="email">
+            <data>
+              <email>default</email>
+            </data>
+          </fx-instance>
+        </fx-model>
+		<fx-repeat id="emails" ref="instance('email')/email">
+		  <template>
+			<fx-control ref="." update-event="input">
+              <label>Email</label>
+              <fx-return ref="." event="value-changed"></fx-return>
+			</fx-control>
+			<fx-trigger>
+			  <button>Check it</button>
+			  <fx-show dialog="myDialog"></fx-show>
+			  <fx-dispatch name="myEvent" targetid="report">
+			  </fx-dispatch>
+			</fx-trigger>
+			<div id="report">
+			  <fx-message event="myEvent">Something happened {.}!</fx-message>
+			</div>
+			<fx-message event="myEvent" target="report">!!!{.}</fx-message>
+			<fx-trigger>
+              <button>message and refresh me</button>
+              <fx-message>Hey my address is {.}</fx-message>
+              <fx-refresh></fx-refresh>
+			</fx-trigger>
+
+			<fx-items ref=".">
+			  <template>
+                <span class="fx-checkbox">
+                  <input id="check" name="fruit" type="checkbox" value="{.}">
+                  <label style="display:inline" for="check">My label: {.}</label>
+                </span>
+              </template>
+			</fx-items>
+
+
+			<fx-dialog id="myDialog">
+              <div class="dialog-content">
+                <a class="close-dialog" href="#" autofocus>&times;</a>
+                <h3>Here's some dialog content</h3>
+                <p>Hey my address is {.}</p>
+                <fx-trigger class="action">
+                  <button>close</button>
+                  <fx-hide dialog="myDialog"></fx-hide>
+                </fx-trigger>
+              </div>
+			</fx-dialog>
+
+		  </template>
+		</fx-repeat>
+		<fx-trigger><button> append</button><fx-insert ref="email"></fx-trigger>
+		        <fx-inspector></fx-inspector>
+      </fx-fore>
+
+
+	</div>
+	<script type="module" src="../../index.js"></script>
+  </body>
+</html>

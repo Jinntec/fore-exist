@@ -1,0 +1,18 @@
+body{
+    font-family: 'Roboto', 'Noto', sans-serif;
+}
+
+xf-model, xf-json-data{
+    display: none;
+}
+
+.note {
+    color: red;
+    margin: 10px 0;
+
+}
+
+h2 {
+    margin-top: 50px;
+}
+
