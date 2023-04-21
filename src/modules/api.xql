@@ -8,8 +8,8 @@ import module namespace roaster="http://e-editiones.org/roaster";
 import module namespace rutil="http://e-editiones.org/roaster/util";
 import module namespace errors="http://e-editiones.org/roaster/errors";
 
+import module namespace fp="https://jinntec.de/fore-exist" at "fore-pages.xqm";
 
-(:import module namespace clients="http://jinntec/realtime/clients" at "clients/clients.xql";:)
 
 
 (:~

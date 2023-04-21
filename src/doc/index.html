@@ -16,10 +16,40 @@
 <body>
 <fx-fore>
     <fx-model>
-        <fx-instance>
+        <fx-instance id="default">
             <data>
             </data>
         </fx-instance>
+        <fx-bind ref="page">
+            <fx-bind ref="@title" required="true()"></fx-bind>
+            <fx-bind ref="@filename" required="true()"></fx-bind>
+        </fx-bind>
+
+        <fx-submission id="savePage"
+                       url="../save?filename={instance()/page/@filename}&amp;collection={instance()/page/@collection}"
+                       method="post"
+                       replace="instance"
+                       instance="vars"
+                       targetref="stored"
+                       ref="instance('foreTemplate')">
+            <fx-header name="content-type" value="'text/html'"></fx-header>
+            <fx-message event="submit-error">Saving failed</fx-message>
+            <fx-message event="submit-done">Stored as {instance('vars')/stored}</fx-message>
+        </fx-submission>
+
+        <fx-instance id="vars">
+            <data>
+                <page title="mytitle" filename="my-page" collection="pages"></page>
+                <stored></stored>
+                <isstored>false</isstored>
+            </data>
+        </fx-instance>
+        <fx-bind ref="instance('vars')">
+            <fx-bind ref="isstored" relevant="string-length(../stored) != 0"></fx-bind>
+        </fx-bind>
+
+        <fx-instance id="foreTemplate"  src="template.html"
+            xpath-default-namespace="http://www.w3.org/1999/xhtml"></fx-instance>
     </fx-model>
 
     <a href="https://github.com/jinntec/fore" class="github-corner" title="Visit Fore on GitHub"
@@ -34,29 +64,60 @@
         </svg>
     </a>
 
-
     <nav>
         <a href="#" disabled="disabled">Home</a>
         <a href="demos.html">Demos</a>
-<!--                <a href="https://jinntec.github.io/fore-docs/" target="_blank">Documentation</a>-->
+        <a href="https://jinntec.github.io/fore-docs/" target="_blank">Documentation</a>
         <!--        <a href="https://github.com/Jinntec/Fore/discussions" target="_blank">Community</a>-->
     </nav>
+
     <header>
-        <!--    <div class="background" style="background: rgb(255, 255, 255);"><canvas class="canvas canvas-particles" width="1192" height="580" style="width: 100%; height: 100%;"></canvas></div>-->
         <img class="logo fore" src="../resources/images/light7.png"/><span class="dash"></span><img class="logo exist" src="../resources/images/existdb.gif"/>
-        <!--            <div class="version">{instance('package')?version}</div>-->
         <h1>Declarative user interfaces for eXist-db</h1>
-
     </header>
+
     <main class="wrapper">
-        <a href="https://jinntec.github.io/fore-docs/getstarted/" role="button" class="action btn new">New Page</a>
 
-        <section>
+        <fx-trigger id="newPage">
+            <a href="#" role="button" class="action btn new">New Page</a>
+            <fx-insert ref="page" origin="instance('vars')/page">
+                <fx-setfocus control="title" event="action-performed" delay="500"></fx-setfocus>
+            </fx-insert>
 
+        </fx-trigger>
 
+        <fx-group ref="page">
+            <fx-control ref="instance('foreTemplate')/head/title">
+                <label>Title</label>
+                <input id="title" placeholder="the title of the page"/>
+            </fx-control>
+            <fx-control ref="@filename">
+                <label>Filename</label>
+                <input placeholder="the filename of the page without ending"/>
+            </fx-control>
+<!--
+            <fx-control ref="@collection">
+                <label>Destination (optional)</label>
+                <input placeholder="eXist-db collection path to store to"/>
+            </fx-control>
+            -->
+            <section class="buttons">
+            <fx-trigger>
+                <button>Create</button>
+                <fx-send submission="savePage"></fx-send>
+            </fx-trigger>
+                <fx-group ref="instance('vars')/isstored">
+                    <a href="/exist/apps/eXide/index.html?open={instance('vars')/stored}" target="_blank" title="{title}">Edit</a>
+                    <a href="/exist/{substring-after(instance('vars')/stored,'/db/')}" target="_blank" title="{title}">Open</a>
+                </fx-group>
+            </section>
+
+        </fx-group>
+        <section class="editor">
         </section>
 
     </main>
+
     <footer>
         <div class="wrapper three-col">
             <div>
@@ -80,7 +141,7 @@
             </div>
         </div>
     </footer>
-
+<fx-inspector></fx-inspector>
 </fx-fore>
 
 

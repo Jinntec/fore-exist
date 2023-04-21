@@ -2,7 +2,7 @@
     font-family: "Kimberley";
     src: url(../fonts/Montserrat/Montserrat-Light.ttf) format("truetype");
 }
-.action{
+.action.btn.new{
     /*width: 10rem;*/
     /*height: 4rem;*/
     background: var(--paper-blue-700);
@@ -17,6 +17,32 @@
     border-bottom: thin solid rgba(0,0,0,0.2);
     border-right: thin solid rgba(0,0,0,0.2);
     max-width:8em;
+}
+button{
+    background: var(--paper-blue-700);
+    color: white;
+    padding: 0.5em 1em;
+    font-weight: 300;
+}
+.buttons *{
+    display:inline-block;
+}
+.buttons a,
+.buttons a:link,
+.buttons a:visited{
+    color:black;
+    padding-left:1em;
+}
+.submit-validation-failed fx-alert{
+    display:inline-block;
+}
+.isEmpty[required] input{
+    background:lightyellow;
+}
+input{
+    border:thin solid #ddd;
+}
+fx-trigger#newPage{
     margin:0 auto;
 }
 
@@ -30,6 +56,39 @@ body {
 }
 fx-fore{
 
+}
+fx-group[ref="page"]{
+    display:block;
+    margin:2em auto;
+    border:thin solid #efefef;
+    padding:1em;
+    width:40em;
+
+}
+fx-group[ref="page"] *{
+    font-size:1em;
+}
+fx-group[ref="page"] fx-control,
+fx-group[ref="page"] fx-trigger{
+    display:inline-block;
+    text-align:left;
+    margin:1em 0;
+}
+fx-group[ref="page"] fx-control{
+    display:flex;
+    flex-wrap:wrap;
+}
+fx-group[ref="page"] fx-control label{
+    width:40%;
+}
+fx-group[ref="page"] fx-control input{
+    width:60%;
+}
+fx-control[required]::after{
+    content:'';
+;}
+fx-control[required] label::after{
+    content:'*'
 }
 
 .left-col{
@@ -154,6 +213,10 @@ header, footer{
     /*background: rgba(248, 248, 255,0.86) ;*/
     padding:2rem 0;
 }
+main.wrapper{
+    margin-bottom:20em;
+    overflow:auto;
+}
 header{
     width: 100%;
     position: relative;
@@ -168,10 +231,11 @@ footer{
     margin-top:2rem;
     border-top:thin solid rgba(255,255,255,0.5);
     background: rgba(248, 248, 255,0.95) ;
-    position:absolute;
+    position:fixed;
     bottom:0;
     width:100%;
     padding: 2rem 0;
+    z-index:10;
 }
 
 .learn{
@@ -208,9 +272,12 @@ nav{
 }
 
 nav a, nav a:link, nav a:visited{
-    color: black;
+    color: white;
     padding: 0.75rem 1rem;
     font-size: 1.2rem;
+}
+nav a[disabled]{
+    color:black;
 }
 
 .three-col {

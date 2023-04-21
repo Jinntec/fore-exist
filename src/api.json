@@ -31,6 +31,45 @@
         }
     },
     "paths": {
+        "/save": {
+            "post": {
+                "summary": "save a page",
+                "operationId": "fp:save-page",
+                "tags": ["pages"],
+                "parameters": [
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "collection",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "returns status of save operation",
+                        "content": {
+                            "application/xml": {}
+                        }
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/xml": {}
+                    }
+                }
+            }
+        }
     },
     "security": [
         {
