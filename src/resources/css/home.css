@@ -18,6 +18,11 @@
     border-right: thin solid rgba(0,0,0,0.2);
     max-width:8em;
 }
+.active{
+    background: rgba(255,255,255,0.75);
+    border-radius: 0.2rem;
+    text-decoration: none;
+}
 button{
     background: var(--paper-blue-700);
     color: white;
@@ -390,11 +395,6 @@ ul li{
     font-size: 0.8rem;
 }
 
-[href="#"]{
-    background: rgba(255,255,255,0.75);
-    border-radius: 0.2rem;
-    text-decoration: none;
-}
 
 @media (max-width: 500px) {
     .github-corner:hover .octo-arm {

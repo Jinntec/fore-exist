@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes" name="viewport"/>
+    <title>login</title>
+
+    <link rel="stylesheet" href="../resources/css/fore.css"/>
+    <script type="module" src="../resources/script/fore-dev.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <fx-fore id="login">
+        <fx-model>
+<!--            <fx-send submission="s-login" event="model-construct-done"></fx-send>-->
+
+            <fx-instance>
+                <data>
+                    <user></user>
+                    <password></password>
+                    <login></login>
+                    <logout></logout>
+                </data>
+            </fx-instance>
+
+            <fx-bind ref="login"
+                     relevant="string-length(instance('response')?user) = 0"></fx-bind>
+            <fx-bind ref="logout"
+                     relevant="string-length(instance('response')?user) != 0"></fx-bind>
+
+            <fx-instance id="response" type="json">{}</fx-instance>
+
+            <fx-submission id="s-login"
+                           method="post"
+                           url="../login"
+                           replace="instance"
+                           instance="response"
+                           validate="false"
+                           serialization="application/x-www-form-urlencoded">
+
+                <fx-action event="submit-error">
+                    <fx-message>login failed</fx-message>
+                    <fx-show dialog="d-login"></fx-show>
+                </fx-action>
+
+                <fx-action event="submit-done">
+                    <!--                    <fx-message>logged in</fx-message>-->
+                    <fx-hide dialog="d-login"></fx-hide>
+                </fx-action>
+
+            </fx-submission>
+            <fx-submission id="s-logout"
+                           url="../logout?logout=logout"
+                           method="get"
+                           replace="instance"
+                           instance="response"
+                           validate="false">
+                <fx-message event="submit-done">You have been logged out - reload to login again</fx-message>
+                <!-- reset logout node  -->
+
+                <fx-action event="submit-done">
+                    <fx-setvalue ref="user"></fx-setvalue>
+                    <fx-setvalue ref="logout"></fx-setvalue>
+                    <fx-refresh force="force"></fx-refresh>
+                    <fx-message>done</fx-message>
+                </fx-action>
+            </fx-submission>
+
+        </fx-model>
+
+        <fx-trigger ref="login">
+            <button>Login</button>
+            <fx-send submission="s-login"></fx-send>
+        </fx-trigger>
+        <fx-trigger ref="logout">
+            <button>Logout</button>
+            <fx-send submission="s-logout"></fx-send>
+        </fx-trigger>
+
+        <fx-dialog id="d-login">
+            <fx-setfocus control="user-login" event="dialog-shown" delay="500"></fx-setfocus>
+            <fx-action event="keydown" if="event('code') = 'Enter'">
+                <fx-refresh force="force"></fx-refresh>
+                <fx-send submission="s-login"></fx-send>
+            </fx-action>
+
+            <div class="dialog-content">
+                <header>Login</header>
+                <fx-control id="user-login" ref="user" update-event="input">
+                    <label>User</label>
+                    <input name="user" autocomplete="username"/>
+                </fx-control>
+                <fx-control ref="password" update-event="input">
+                    <label>Password</label>
+                    <input name="password" type="password" class="widget" autocomplete="current-password"></input>
+                </fx-control>
+                <fx-trigger class="action">
+                    <button>Login</button>
+                    <fx-send submission="s-login"></fx-send>
+                </fx-trigger>
+            </div>
+        </fx-dialog>
+
+    </fx-fore>
+</div>
+</body>
+</html>
