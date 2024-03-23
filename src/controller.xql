@@ -17,6 +17,13 @@ else if ($exist:path eq "/") then
         <redirect url="index.html"/>
     </dispatch>
 
+else if(ends-with($exist:path,'.html')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/{$exist:path}">
+            <set-header name="Cache-Control" value="no-cache"/>
+        </forward>
+    </dispatch>
+
 else if(starts-with($exist:path, "/doc")) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/{$exist:path}">

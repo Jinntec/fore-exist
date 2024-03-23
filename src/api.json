@@ -150,7 +150,20 @@
                 }
             }
         },
-        "/save": {
+        "/page": {
+            "get": {
+                "summary": "load a users todo list",
+                "operationId": "fp:load-page",
+                "tags": ["pages"],
+                "responses": {
+                    "200":{
+                        "description": "returns todos",
+                        "content": {
+                            "application/xml": {}
+                        }
+                    }
+                }
+            },
             "post": {
                 "summary": "save a page",
                 "operationId": "fp:save-page",
@@ -164,6 +177,50 @@
                             "type": "string"
                         }
                     },
+                    {
+                        "name": "collection",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "returns status of save operation",
+                        "content": {
+                            "application/xml": {}
+                        }
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/xml": {}
+                    }
+                }
+            }
+        },
+        "/todo": {
+            "get": {
+                "summary": "load a users todo list",
+                "operationId": "fp:load-page",
+                "tags": ["pages"],
+                "responses": {
+                    "200":{
+                        "description": "returns todos",
+                        "content": {
+                            "application/xml": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "save a page",
+                "operationId": "fp:save-todos",
+                "tags": ["pages"],
+                "parameters": [
                     {
                         "name": "collection",
                         "in": "query",
