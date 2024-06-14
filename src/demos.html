@@ -3,9 +3,8 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes" name="viewport"/>
     <title>Fore Demos</title>
-    <link rel="stylesheet" href="../resources/css/fore.css"/>
-    <link rel="stylesheet" href="../resources/css/demo.css"/>
-    <link rel="stylesheet" href="../resources/css/home.css"/>
+    <link rel="stylesheet" href="resources/css/fore.css"/>
+    <link rel="stylesheet" href="resources/css/home.css"/>
 
     <style>
         section{
@@ -13,8 +12,12 @@
             max-width:60em;
             margin:0 auto;
         }
-        img{
+        section > a{
             width: 100%;
+        }
+        img{
+            width: 50%;
+            margin:0 auto;
             cursor:pointer;
         }
         h2, h3, h4{
@@ -23,6 +26,7 @@
     </style>
 </head>
 <body>
+<!--
 <fx-fore>
     <fx-model>
         <fx-instance id="default">
@@ -30,6 +34,7 @@
             </data>
         </fx-instance>
     </fx-model>
+-->
 
     <a href="https://github.com/jinntec/fore" class="github-corner" title="Visit Fore on GitHub"
        aria-label="Visit Tuttle on GitHub" target="_blank">
@@ -51,45 +56,55 @@
     </nav>
 
     <header>
-        <a href="../demo/todo.html" target="_blank"><img class="logo fore" src="../resources/images/light7.png"/><span class="dash"></span><img class="logo exist" src="../resources/images/existdb.gif"/></a>
-        <h1>Fore Demos</h1>
+        <img class="logo fore" src="resources/images/light7.png"/><span class="sep">&#8249; &#8250;</span><img class="logo exist" src="resources/images/existdb.gif"/>
     </header>
 
     <main class="wrapper">
-        <section>
-            <a href="../demo/todo.html" target="_blank"><img src="../resources/images/todo-screen.png"/></a>
-        </section>
+        <article>
+            <h1>Todo App - eXist-db-style</h1>
+            <p>This very simple todo app uses eXist-db to store and retrieve data using Roaster <a href="api.html" target="_blank">OpenAPI endpoints</a>.</p>
+            <p>The source of the page is found in collection <a href="/exist/apps/eXide/index.html?open=/db/apps/fore-exist/demo/todo.html" target="_blank">'demo'</a> of the app.</p>
+            <p>It does some simple authentication with the help of a separate, imported Fore page (<a href="/exist/apps/eXide/index.html?open=/db/apps/fore-exist/demo/login.html" target="_blank">login.html</a>) which
+            can be re-used in other apps.</p>
+            <p>This example also shows how to implement auto-saving with Fore. Please study the source - it has
+            lots of explanations inline.</p>
+            <a href="demo/todo.html" target="_blank">
+                <figure>
+                    <img class="todo-app-shot" src="resources/images/todo.png"/>
+                    <figcaption>Click on screenshot to run todo page. Will open in new tab.</figcaption>
+                </figure>
+            </a>
+
+        </article>
     </main>
 
     <footer>
         <div class="wrapper three-col">
-            <div>
-                <h4>Fore is brought to you by</h4>
+            <section>
+                <header>Fore is brought to you by</header>
                 <a href="https://jinntec.de" target="_blank">
-                    <img class="logo jinntec" src="../resources/images/jinntec-bw.png"/></a>
+                    <img class="logo jinntec" src="resources/images/jinntec-bw.png"/></a>
                 <div class="subline">For professional support contact us at<br/>info@jinntec.de</div>
-            </div>
-            <div>
-                <h4>Links</h4>
+            </section>
+            <section>
+                <header>Links</header>
                 <ul>
-                    <li><a href="https://twitter.com/JinnForeTec" target="_blank">Twitter</a></li>
+<!--                    <li><a href="https://twitter.com/JinnForeTec" target="_blank">Twitter</a></li>-->
                     <li><a href="https://github.com/Jinntec/Fore" target="_blank">Github</a></li>
                     <li><a href="https://github.com/Jinntec/Fore/discussions" target="_blank">Discussions</a></li>
                 </ul>
-            </div>
-            <div>
-                <div class="subline">this page is powered by</div>
-                <img class="logo" src="../resources/images/light7.png"/>
-
-            </div>
+            </section>
+            <section>
+                <header>This page is powered by</header>
+                <img class="logo" src="resources/images/light7.png"/>
+            </section>
         </div>
     </footer>
-    <fx-inspector></fx-inspector>
-</fx-fore>
+<!--</fx-fore>-->
 
 
 
-<script type="module" src="../resources/script/fore-dev.js"></script>
+<script type="module" src="resources/script/fore-dev.js"></script>
 
 </body>
 </html>
