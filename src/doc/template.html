@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -9,14 +10,18 @@
 <fx-fore>
 
     <fx-model>
+        <!-- inline data tagnames must be all lowercase as in HTML. When using full XML load the file via the 'src' attribute -->
         <fx-instance>
-            <data></data>
+            <data>
+                <hello>Hello!</hello>
+            </data>
         </fx-instance>
     </fx-model>
 
     <!-- ### UI here ###  -->
     <main>
         <h1>New Fore Page</h1>
+        <h2>{hello}</h2>
         <p>Add your content here...</p>
     </main>
 </fx-fore>
