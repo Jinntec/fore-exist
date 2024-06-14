@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -10,7 +11,7 @@
 
 </head>
 <body>
-<fx-fore>
+<fx-fore id="home">
     <fx-model>
         <fx-instance id="default">
             <data></data>
@@ -67,18 +68,25 @@
     </nav>
 
     <header>
+        <img class="logo fore" src="resources/images/light7.png"/><span class="sep">&#8249; &#8250;</span><img class="logo exist" src="resources/images/existdb.gif"/>
+    </header>
+
+<!--
+    <header>
         <img class="logo fore" src="resources/images/light7.png"/>
         <span class="dash"></span>
         <img class="logo exist" src="resources/images/existdb.gif"/>
-        <h1>Declarative user interfaces for eXist-db</h1>
     </header>
+-->
 
 
     <main class="wrapper">
+        <h1>Declarative user interfaces for eXist-db</h1>
         <section class="intro">
-            <p>This app serves as a kickstarter and Fore playground to develop and test eXist-db applications using Fore
+            <p>This app serves as a playground to develop and test eXist-db applications using Fore
             as their user interface.</p>
-            <p>It just lets you quickly create an HTML with Fore preconfigured and edit it with eXide.</p>
+            <hr/>
+            <p>To create a page with Fore imported hit the button below.</p>
         </section>
         <fx-trigger id="newPage">
             <a href="#" role="button" class="action btn new">New Page</a>

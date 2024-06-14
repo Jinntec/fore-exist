@@ -23,6 +23,19 @@
     border-radius: 0.2rem;
     text-decoration: none;
 }
+
+section.intro{
+    color:black;
+    max-width:38rem;
+    margin:0 auto;
+    text-align:center;
+    padding-bottom: 0 0 1rem 0;
+}
+section.intro p{
+    color:black;
+    padding:1rem 0 2rem;
+}
+
 button{
     background: var(--paper-blue-700);
     color: white;
@@ -38,17 +51,32 @@ button{
     color:black;
     padding-left:1em;
 }
+input{
+    padding:0.5rem;
+}
 .submit-validation-failed fx-alert{
     display:inline-block;
 }
 .isEmpty[required] input{
-    background:lightyellow;
+}
+.isEmpty.visited .widget{
+    background:orange;
+}
+.submit-validation-failed .isEmpty input{
+    background:orange;
 }
 input{
     border:thin solid #ddd;
 }
 fx-trigger#newPage{
     margin:0 auto;
+    width:8em;
+    display: block;
+
+}
+fx-trigger#newPage a{
+    color:white;
+    background: linear-gradient(to right, rgba(19, 40, 115,1), rgba(19, 120, 255, 1));
 }
 
 body {
@@ -62,7 +90,10 @@ body {
 fx-fore{
 
 }
-fx-group[ref="page"]{
+h1{
+    text-align: center;
+}
+fx-group{
     display:block;
     margin:2em auto;
     border:thin solid #efefef;
@@ -110,6 +141,12 @@ em{
     font-weight: 900;
     /*text-decoration: underline;*/
 }
+.edit-page div{
+    padding:1rem 0;
+}
+.edit-page a{
+    padding-right:.5rem;
+}
 
 .feature{
     background: white;
@@ -142,6 +179,10 @@ footer .wrapper::before{
     content: '';
     display: none;
 }
+footer header{
+    color:var(--paper-grey-900);
+    z-index: 3;
+}
 footer .col-header{
     padding-bottom: 1rem;
 }
@@ -166,14 +207,20 @@ a.reference {
     font-size: 1.4rem;
     display: block;
 }
-.dash{
+.sep {
+    font-size:6rem;
+    display: inline-block;
+    margin-right:1rem;
+    white-space: nowrap;
+    /*
     height: 5px;
     background: black;
     width: 2em;
-    border-radius:0.2em;
-    transform:translateY(-38px) translateX(-10px);
-    display:inline-block;
-
+    border-radius: 0.2em;
+    transform: translateY(-28px) translateX(-6px);
+    display: inline-block;
+    position: absolute;
+    */
 }
 .github-corner{
     position:fixed;
@@ -219,28 +266,48 @@ header, footer{
     padding:2rem 0;
 }
 main.wrapper{
-    margin-bottom:20em;
+    margin:0 auto;
+    overflow:auto;
+    padding-top:0;
+    padding-bottom:0;
+    height:100vh;
     overflow:auto;
 }
+
 header{
     width: 100%;
     position: relative;
     z-index: -1;
     background: rgba(248, 248, 255,0.26) ;
-    margin-top:5rem;
+    margin-top:3.5rem;
     text-align:center;
     padding:3em 0 0;
 
 }
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5rem 0 0;
+}
+section header{
+    margin-top:0;
+    padding-top: 0;
+    font-size: 1.4em;
+    text-align: left;
+}
 footer{
+    margin:0 auto;
     margin-top:2rem;
     border-top:thin solid rgba(255,255,255,0.5);
     background: rgba(248, 248, 255,0.95) ;
-    position:fixed;
-    bottom:0;
+    /*position:fixed;*/
+    /*bottom:0;*/
     width:100%;
-    padding: 2rem 0;
+    padding:0;
     z-index:10;
+    width: 100%;
+    font-size: 0.8em;
 }
 
 .learn{
@@ -248,7 +315,7 @@ footer{
     font-size: 1.4rem;
 }
 .logo{
-    width: 200px;
+    width: 12rem;
 }
 .logo.fore{
     filter:contrast(2.5) brightness(1.2) drop-shadow(1px 2px 1px lightgrey);
@@ -266,7 +333,7 @@ nav{
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1.6rem 0;
+    padding: 1rem 0;
     background: linear-gradient(to right, rgba(19, 40, 115,1), rgba(19, 120, 255, 1));
     border-top: 1px solid rgba(255,255,255,0.5);
     border-bottom:1px solid rgba(0,0,0,0.2);
@@ -300,7 +367,7 @@ nav a[disabled]{
 p {
     /*color: white;*/
     /*color:var(--paper-grey-900);*/
-    color:white;
+    /*color:white;*/
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     line-height: 1.5;
@@ -346,16 +413,18 @@ section > div {
     font-size: 1.2rem;
 }
 .wrapper {
-    max-width: 1260px;
+    max-width: 48rem;
     min-height: auto;
     z-index: 5;
     /*background: rgba(100, 100, 100, 0.1);*/
     background: transparent;
     /*background: white;*/
-    padding: 1rem;
+    padding: 1rem 0;
     border-radius:0;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
+    margin:0 auto;
+    padding: 1rem;
 }
 ul{
     list-style: none;
@@ -387,6 +456,12 @@ ul li{
 .inline.updated::before{
     position: relative;
     display: inline-block;
+}
+
+.todo-app-shot{
+    max-width:100%;
+    width:auto;
+
 }
 .version{
     display: block;
