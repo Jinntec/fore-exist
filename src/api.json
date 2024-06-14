@@ -15,6 +15,10 @@
         {
             "name":"pages",
             "description":"pages API"
+        },
+        {
+            "name": "todo",
+            "description": "sample app"
         }
     ],
     "components": {
@@ -35,7 +39,7 @@
             "post": {
                 "summary": "User Login",
                 "description": "Start an authenticated session for the given user",
-                "tags": ["auth", "body"],
+                "tags": ["auth"],
                 "operationId": "auth:login",
                 "requestBody": {
                     "required": true,
@@ -111,7 +115,7 @@
                 "summary": "User Logout",
                 "description": "End session of the current user",
                 "operationId": "auth:logout",
-                "tags": ["auth", "query"],
+                "tags": ["auth"],
                 "parameters": [
                     {
                         "name": "logout",
@@ -205,8 +209,8 @@
         "/todo": {
             "get": {
                 "summary": "load a users todo list",
-                "operationId": "fp:load-page",
-                "tags": ["pages"],
+                "operationId": "todo:load-todos",
+                "tags": ["todo"],
                 "responses": {
                     "200":{
                         "description": "returns todos",
@@ -217,9 +221,9 @@
                 }
             },
             "post": {
-                "summary": "save a page",
-                "operationId": "fp:save-todos",
-                "tags": ["pages"],
+                "summary": "save a users todo list",
+                "operationId": "todo:save-todos",
+                "tags": ["todo"],
                 "parameters": [
                     {
                         "name": "collection",
