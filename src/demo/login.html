@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -12,7 +14,8 @@
 <div class="wrapper">
     <fx-fore id="login">
         <fx-model>
-<!--            <fx-send submission="s-login" event="model-construct-done"></fx-send>-->
+
+            <fx-send submission="s-login" event="model-construct-done"></fx-send>
 
             <fx-instance>
                 <data>
@@ -44,7 +47,9 @@
                 </fx-action>
 
                 <fx-action event="submit-done">
-                    <!--                    <fx-message>logged in</fx-message>-->
+                    <fx-dispatch name="logged-in">
+                        <fx-property name="user" expr="string(instance('response')?user)"></fx-property>
+                    </fx-dispatch>
                     <fx-hide dialog="d-login"></fx-hide>
                 </fx-action>
 
@@ -59,6 +64,7 @@
                 <!-- reset logout node  -->
 
                 <fx-action event="submit-done">
+                    <fx-dispatch name="logged-out">logged in</fx-dispatch>
                     <fx-setvalue ref="user"></fx-setvalue>
                     <fx-setvalue ref="logout"></fx-setvalue>
                     <fx-refresh force="force"></fx-refresh>
@@ -68,16 +74,19 @@
 
         </fx-model>
 
-        <fx-trigger ref="login">
-            <button>Login</button>
-            <fx-send submission="s-login"></fx-send>
-        </fx-trigger>
-        <fx-trigger ref="logout">
-            <button>Logout</button>
-            <fx-send submission="s-logout"></fx-send>
-        </fx-trigger>
+        <section>
+            <fx-trigger ref="login">
+                <button>Login</button>
+                <fx-send submission="s-login"></fx-send>
+            </fx-trigger>
+            <fx-trigger ref="logout">
+                <button>Logout</button>
+                <fx-send submission="s-logout"></fx-send>
+            </fx-trigger>
+        </section>
 
         <fx-dialog id="d-login">
+
             <fx-setfocus control="user-login" event="dialog-shown" delay="500"></fx-setfocus>
             <fx-action event="keydown" if="event('code') = 'Enter'">
                 <fx-refresh force="force"></fx-refresh>
@@ -86,14 +95,16 @@
 
             <div class="dialog-content">
                 <header>Login</header>
-                <fx-control id="user-login" ref="user" update-event="input">
-                    <label>User</label>
-                    <input name="user" autocomplete="username"/>
-                </fx-control>
-                <fx-control ref="password" update-event="input">
-                    <label>Password</label>
-                    <input name="password" type="password" class="widget" autocomplete="current-password"></input>
-                </fx-control>
+                <section class="login-controls">
+                    <fx-control id="user-login" ref="user" update-event="input">
+                        <label>User</label>
+                        <input name="user" autocomplete="username"/>
+                    </fx-control>
+                    <fx-control ref="password" update-event="input">
+                        <label>Password</label>
+                        <input name="password" type="password" class="widget" autocomplete="current-password"></input>
+                    </fx-control>
+                </section>
                 <fx-trigger class="action">
                     <button>Login</button>
                     <fx-send submission="s-login"></fx-send>
