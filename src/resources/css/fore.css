@@ -1,5 +1,5 @@
-@import 'toastify.css';
 @import 'vars.css';
+@import 'toastify.css';
 /*@import url('dev.css');*/
 
 html {
@@ -28,14 +28,14 @@ html {
     nonrelevant must always be hidden
 */
 [nonrelevant] {
-    display: none !important;
+    display: none;
 }
 
 [relevant] {
     display: block;
 }
 
-fx-control[required]:after {
+fx-control[required] label:after {
     content: "*";
     display: inline;
     color: red;
@@ -101,6 +101,10 @@ fx-alert {
     display: none;
 }
 
+[valid] fx-alert{
+    display: none;
+}
+
 .visited[invalid] fx-alert {
     display: block;
 }
@@ -116,6 +120,7 @@ fx-output[readonly] img {
 
 .error {
     background: var(--paper-red-500);
+    display: flex;
 }
 
 fx-control, fx-trigger, .fx-checkbox {
@@ -256,7 +261,6 @@ fx-fore.action-log{
     min-height: 3rem;
     background: var(--paper-orange-500);
 }
-/*
 .action-log fx-model{
     display: block;
     min-height: 1rem;
@@ -264,7 +268,6 @@ fx-fore.action-log{
 .action-log fx-model::before{
     content:'model';
 }
-*/
 
 .action-log fx-instance,
 .action-log fx-bind,
@@ -293,4 +296,10 @@ fx-fore.action-log{
     cursor: pointer;
 }
 
+
+/* ### toastify customizations #### */
+
+.toastify.on.warning{
+    background: var(--paper-orange-500);
+}
 
