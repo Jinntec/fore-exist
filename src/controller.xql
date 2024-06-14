@@ -50,17 +50,21 @@ else if(starts-with($exist:path, "/pages")) then
     </dispatch>
 
 (: static HTML page for API documentation should be served directly to make sure it is always accessible :)
-else if ($exist:path = ("/api.html","/index.html")) then
+else if ($exist:path = ("/api.html","/api.json", "/index.html")) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     </dispatch>
 
 (: other images are resolved against the data collection and also returned directly :)
-else if (matches($exist:resource, "\.(png|jpg|jpeg|gif|tif|tiff|txt|mei)$", "s")) then
+else if (matches($exist:resource, "\.(png|jpg|jpeg|gif|tif|tiff|txt|mei|xml)$", "s")) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/data/{$exist:path}">
             <set-header name="Cache-Control" value="max-age=31536000"/>
         </forward>
     </dispatch>
+else if (ends-with($exist:path, '.xml')) then
+    <forward url="{$exist:controller}/{$exist:path}">
+        <set-header name="Cache-Control" value="no-cache"/>
+    </forward>
 
 (: use a different Open API router, needs exist-jwt installed! :)
 else if (starts-with($exist:path, '/jwt')) then
