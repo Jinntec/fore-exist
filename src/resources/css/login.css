@@ -1,0 +1,64 @@
+#login {
+    display: inline-block;
+    width: fit-content;
+    overflow: hidden;
+    float: right;
+}
+
+#login fx-dialog.show .dialog-content {
+    padding: 1rem;
+    padding-top: 5rem;
+    width: 22rem;
+    height: 8rem;
+    border: thin solid;
+    border-radius: 0.3rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: white;
+}
+#login fx-dialog header{
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    width: calc(100% - 2rem);
+    background: var(--paper-light-blue-700);
+    left: 0;
+    top: 0;
+    padding: 1rem;
+}
+#login #d-login .dialog-content{
+    position: relative;
+}
+
+#login fx-control{
+    display: flex;
+    padding:0.5rem 0;
+    width: 100%;
+    align-items: baseline;
+}
+#login fx-control input[type='text']{
+    border: 1px solid;
+    padding:0.5rem;
+    width: 60%;
+}
+#login label{
+    width: 30%;
+    display: inline-block;
+}
+
+#login fx-trigger button{
+    background: var(--paper-blue-500);
+    color:white;
+    padding:0.5em;
+}
+#login section.hidden{
+    display: none;
+}
+#login section.loggedIn{
+    display: block;
+}
+#login body.fx-ready{
+    display:block;
+}
