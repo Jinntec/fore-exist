@@ -1,6 +1,11 @@
 body{
     font-family: "Oswald", Verdana, "Helvetica", sans-serif;
+    display:none;
 }
+body.fx-ready{
+    display:block;
+}
+
 .active{
 
 }
@@ -41,10 +46,9 @@ fx-control {
 }
 
 fx-control[required]::after {
-    content:'*';
-    color:red;
-    margin-left:-4pt;
+    content:'';
 }
+
 fx-control[readonly]::before {
     content:'!';
     color:blue;
@@ -74,18 +78,18 @@ fx-repeat {
 }
 fx-repeatitem{
     display: block;
-    padding: 1rem;
+    padding: .5rem;
 
 }
 fx-repeatitem > div {
     display: block;
     display: grid;
-    grid-template-columns: 10% auto 30% 10%;
+    grid-template-columns: 10% auto 2rem;
     align-items: center;
-    grid-gap:0.5rem;
+    grid-gap: 0.5rem;
 }
 fx-repeatitem fx-trigger.btn.add{
-    display: none;
+     display: none;
 }
 fx-repeatitem[repeat-index] fx-trigger.btn.add{
     display: block;
@@ -138,6 +142,7 @@ input[type=checkbox]{
     text-decoration:none;
     opacity: 1;
     transition: all 1s;
+    width:calc(100% - 0.5rem);
 }
 #task.true input{
     text-decoration:line-through;
@@ -145,7 +150,7 @@ input[type=checkbox]{
     color:green;
 }
 #task.false input{
-    color:orange;
+    /*color:orange;*/
 }
 .wrapper{
     height:auto;
@@ -157,4 +162,33 @@ input[type=checkbox]{
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
+}
+
+/* ######################### */
+section.hidden{
+    display: none;
+}
+section.loggedIn{
+    display: block;
+}
+#switch{
+    width:28rem;
+}
+#switch input{
+    width:1rem;
+}
+.new{
+    display:grid;
+    grid-template-columns:auto 2rem;
+    grid-gap:0;
+    padding:1rem 0;
+}
+.new fx-control{
+    padding:0;
+}
+.new .btn button {
+    border-radius: 0;
+    border-top-right-radius: 25%;
+    border-bottom-right-radius: 25%;
+    height: 100%;
 }
