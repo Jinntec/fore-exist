@@ -9,7 +9,8 @@
     "build": "gulp build",
     "build:all": "gulp build && gulp test:build",
     "deploy": "gulp install",
-    "copy": "gulp copyStatic"
+    "copy": "gulp copyStatic",
+    "postinstall": "cp node_modules/@jinntec/fore/dist/* src/resources/script/"
   },
   "repository": {
     "type": "git",
@@ -42,7 +43,7 @@
     "slow": 1000
   },
   "dependencies": {
-    "@jinntec/fore": "^2.0.0",
+    "@jinntec/fore": "^2.2.0",
     "@polymer/iron-component-page": "^4.0.1",
     "@polymer/iron-demo-helpers": "^3.1.0",
     "@polymer/paper-button": "^3.0.1",
